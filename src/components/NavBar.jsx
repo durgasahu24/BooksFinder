@@ -2,28 +2,49 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Heart, Search } from "lucide-react"; 
 import { useDispatch } from "react-redux";
-import fetchBooks from '../api/UseBookapi'
+import fetchBooks from "../api/useBookapi";
 import { setBooks } from "../redux/bookSlice";
+import useNetworkStatus from "../api/useNetworkStatus";
+import { toast } from "react-hot-toast";
 
 const NavBar = () => {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
+  const isOnline = useNetworkStatus(); //  Track online/offline status
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (query.trim() === "") return;
-    console.log("queery ",query);
-     const Books = await fetchBooks(query)
-     dispatch(setBooks(Books));
-    setQuery("");
+
+    if (!isOnline) {
+      toast.error("🚫 You’re offline. Please connect to the internet.");
+       setQuery("");
+      return;
+    }
+
+    if (query.trim() === "") {
+      toast.error("Please enter a search term.");
+      return;
+    }
+
+    try {
+      const books = await fetchBooks(query);
+      if (books.length === 0) {
+        toast("No books found for that query.");
+      }
+      dispatch(setBooks(books));
+      setQuery("");
+    } catch (error) {
+      toast.error("Something went wrong while fetching books.");
+      console.error(error);
+    }
   };
 
   return (
-    <header className="w-full flex flex-col sm:flex-row justify-between items-center bg-white dark:bg-gray-900 px-6 py-4 shadow-md rounded-lg  fixed top-0 left-0 right-0 z-50
-">
+    <header className="w-full flex flex-col sm:flex-row justify-between items-center bg-white dark:bg-gray-900 px-6 py-4 shadow-md rounded-lg fixed top-0 left-0 right-0 z-50">
+      
       {/* App Title */}
       <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-3 sm:mb-0">
-         Book Finder
+        Book Finder
       </h1>
 
       {/* Search Bar */}
@@ -46,7 +67,7 @@ const NavBar = () => {
         </button>
       </form>
 
-
+      {/* Favorites Link */}
       <Link
         to="/favorites"
         className="flex items-center gap-2 mt-3 sm:mt-0 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-semibold transition-all"
@@ -54,7 +75,6 @@ const NavBar = () => {
         <Heart className="w-5 h-5" />
         <span>Favorites</span>
       </Link>
-
     </header>
   );
 };
