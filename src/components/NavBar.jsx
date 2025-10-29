@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Heart, Search } from "lucide-react"; 
 import { useDispatch } from "react-redux";
-import fetchBooks from "../api/useBookapi";
 import { setBooks } from "../redux/bookSlice";
-import useNetworkStatus from "../api/useNetworkStatus";
+import useNetworkStatus from "../hooks/useNetworkStatus";
 import { toast } from "react-hot-toast";
+import fetchBooks from '../api/fetchBooks'
 
 const NavBar = () => {
   const [query, setQuery] = useState("");

@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Favorites from "./components/Favorites";
 import BookDetails from "./components/BookDetails";
-import useNetworkStatus from "./api/useNetworkStatus";
 import { Toaster, toast } from "react-hot-toast";
+import useNetworkStatus from "./hooks/useNetworkStatus";
 
 export default function App() {
   const isOnline = useNetworkStatus();
@@ -40,8 +40,6 @@ export default function App() {
         </Routes>
       </BrowserRouter>
 
-      {/* 🟢 Toast notification container */}
-      {/* <Toaster position="top-center" reverseOrder={false} /> */}
     </div>
   );
 }
