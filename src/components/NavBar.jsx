@@ -1,23 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Heart, Search } from "lucide-react"; // optional: npm install lucide-react
+import { Heart, Search } from "lucide-react"; 
 import { useDispatch } from "react-redux";
 import fetchBooks from '../api/UseBookapi'
+import { setBooks } from "../redux/bookSlice";
 
 const NavBar = () => {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (query.trim() === "") return;
     console.log("queery ",query);
-    dispatch(fetchBooks(query))
+     const Books = await fetchBooks(query)
+     dispatch(setBooks(Books));
     setQuery("");
   };
 
   return (
-    <header className="w-full flex flex-col sm:flex-row justify-between items-center bg-white dark:bg-gray-900 px-6 py-4 shadow-md rounded-lg mt-4">
+    <header className="w-full flex flex-col sm:flex-row justify-between items-center bg-white dark:bg-gray-900 px-6 py-4 shadow-md rounded-lg  fixed top-0 left-0 right-0 z-50
+">
       {/* App Title */}
       <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-3 sm:mb-0">
          Book Finder
