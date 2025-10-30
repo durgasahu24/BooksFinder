@@ -142,17 +142,6 @@ Example:
 https://openlibrary.org/search.json?title=harry+potter
 ```
 
----
-
-## 💡 **Additional Enhancements**
-
-* 🔄 Persistent favorites using localStorage (optional future improvement).
-* 🌙 Dark/Light Mode toggle.
-* 📖 Pagination for large search results.
-* 🧭 Search suggestions or auto-complete.
-
----
-
 ## 🧑‍💻 **Developed By**
 
 **Durga Sahu**
