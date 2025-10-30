@@ -161,4 +161,3 @@ https://openlibrary.org/search.json?title=harry+potter
 
 ---
 
-Would you like me to add **screenshots and preview images** (like home page, search results, favorites page) to make it more impressive for submission?
