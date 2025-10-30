@@ -1,7 +1,3 @@
-Perfect 🚀 That’s great progress, Durga!
-
-Here’s your **updated `README.md`** including your **Vercel live link** and all project details (clean, professional, and ready for submission 👇):
-
 ---
 
 ## 📚 Book Finder App
@@ -57,11 +53,6 @@ Search books by title using the Open Library API.
 
 Add or remove books from your favorites list.
 Favorites are stored persistently using Redux state.
-
-### 🧾 Recent Searches
-
-Automatically saves your last 3–5 search terms in localStorage,
-allowing you to click and search them again easily.
 
 ### 🌐 Network Status
 
