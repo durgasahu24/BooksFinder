@@ -1,11 +1,9 @@
-import React from "react";
+import { ClipLoader } from "react-spinners";
 
-const Loader = () => {
-  return (
-    <div className="flex justify-center items-center h-64">
-      <div className="w-10 h-10 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
-    </div>
-  );
-};
+const Loader = () => (
+  <div className="flex justify-center items-center h-64">
+    <ClipLoader color="#3B82F6" size={50} />
+  </div>
+);
 
 export default Loader;

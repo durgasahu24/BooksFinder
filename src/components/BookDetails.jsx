@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import Loader from "../components/Loader";
+import { Heart, ArrowLeft } from "lucide-react";
+import { addToFavorites, removeFromFavorites } from "../redux/favoriteSlice";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 
 const BookDetails = () => {
   const { id } = useParams();
   const [book, setBook] = useState(null);
   const [authors, setAuthors] = useState([]);
+
+  const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.favorites.items);
 
   useEffect(() => {
     const fetchBookDetails = async () => {
@@ -14,7 +22,6 @@ const BookDetails = () => {
         const bookData = res.data;
         setBook(bookData);
 
-        // Fetch author names (they come as author keys)
         if (bookData.authors) {
           const authorNames = await Promise.all(
             bookData.authors.map(async (a) => {
@@ -28,72 +35,106 @@ const BookDetails = () => {
         }
       } catch (error) {
         console.error("Error fetching book details:", error);
+        toast.error("Failed to fetch book details");
       }
     };
     fetchBookDetails();
   }, [id]);
 
-  if (!book) return <p className="text-center mt-10 text-gray-600">Loading...</p>;
+  if (!book) return <Loader />;
+
+  const isFavorite = favorites.some((fav) => fav.key === book.key);
+
+  const toggleFavorite = (e) => {
+    e.preventDefault();
+    if (isFavorite) {
+      dispatch(removeFromFavorites(book.key));
+      toast.error("Book removed from favorites");
+    } else {
+      dispatch(addToFavorites(book));
+      toast.success("Book added to favorites");
+    }
+  };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white dark:bg-gray-900 rounded-xl shadow-md mt-10">
+    <div className="min-h-screen px-6 py-10 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       {/* Back Button */}
       <Link
         to="/"
-        className="text-blue-500 hover:text-blue-700 mb-4 inline-block"
+        className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 mb-6 transition"
       >
-        ← Back to Home
+        <ArrowLeft className="w-5 h-5 mr-2" /> Back to Home
       </Link>
 
-      {/* Book Cover */}
-      {book.covers && (
-        <img
-          src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`}
-          alt={book.title}
-          className="w-64 h-auto rounded-lg shadow-md mx-auto mb-6"
-        />
-      )}
-
-      {/* Book Title */}
-      <h1 className="text-3xl font-bold text-center text-blue-600 dark:text-blue-400 mb-2">
-        {book.title}
-      </h1>
-
-      {/* Authors */}
-      {authors.length > 0 && (
-        <p className="text-center text-gray-700 dark:text-gray-300 mb-4">
-          <strong>Author:</strong> {authors.join(", ")}
-        </p>
-      )}
-
-      {/* Description */}
-      <p className="text-gray-800 dark:text-gray-200 mb-4 leading-relaxed">
-        {book.description?.value || book.description || "No description available."}
-      </p>
-
-      {/* Publish Year */}
-      {book.first_publish_date && (
-        <p className="text-gray-600 dark:text-gray-400 mb-2">
-          📅 <strong>First Published:</strong> {book.first_publish_date}
-        </p>
-      )}
-
-      {/* Subjects */}
-      {book.subjects && (
-        <div className="mt-4">
-          <h3 className="font-semibold text-gray-900 dark:text-gray-100">Subjects:</h3>
-          <div className="flex flex-wrap gap-2 mt-2">
-            {book.subjects.map((subject, idx) => (
-              <span
-                key={idx}
-                className="bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-200 px-3 py-1 rounded-full text-sm"
-              >
-                {subject}
-              </span>
-            ))}
+      {/* Book Section */}
+      <div className="flex flex-col md:flex-row gap-8 items-center md:items-start max-w-5xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+        {/* Cover */}
+        {book.covers ? (
+          <img
+            src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`}
+            alt={book.title}
+            className="w-56 h-auto rounded-lg shadow-md"
+          />
+        ) : (
+          <div className="w-56 h-72 bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center text-gray-500">
+            No Cover
           </div>
+        )}
+
+        {/* Details */}
+        <div className="flex-1 space-y-4">
+          <h1 className="text-3xl font-bold text-blue-600 dark:text-blue-400 flex items-center gap-3">
+            {book.title}
+            <button
+              onClick={toggleFavorite}
+              className="text-red-500 hover:text-red-600 transition"
+              title={isFavorite ? "Remove from favorites" : "Add to favorites"}
+            >
+              <Heart
+                fill={isFavorite ? "red" : "none"}
+                stroke="red"
+                className="w-6 h-6 transition-all"
+              />
+            </button>
+          </h1>
+
+          {authors.length > 0 && (
+            <p className="text-gray-700 dark:text-gray-300">
+              <strong>Author:</strong> {authors.join(", ")}
+            </p>
+          )}
+
+          <p className="leading-relaxed">
+            {book.description?.value ||
+              book.description ||
+              "No description available."}
+          </p>
+
+          {book.first_publish_date && (
+            <p className="text-gray-600 dark:text-gray-400">
+              📅 <strong>First Published:</strong> {book.first_publish_date}
+            </p>
+          )}
+
+          {book.subjects && (
+            <div>
+              <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+                Subjects:
+              </h3>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {book.subjects.map((subject, idx) => (
+                  <span
+                    key={idx}
+                    className="bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-200 px-3 py-1 rounded-full text-sm"
+                  >
+                    {subject}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

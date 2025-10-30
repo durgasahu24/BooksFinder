@@ -43,21 +43,21 @@ const NavBar = () => {
     <header className="w-full flex flex-col sm:flex-row justify-between items-center bg-white dark:bg-gray-900 px-6 py-4 shadow-md rounded-lg fixed top-0 left-0 right-0 z-50">
       
       {/* App Title */}
-      <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-3 sm:mb-0">
+      <h1 className=" text-2xl md:text-xl lg:text-2xl font-bold text-blue-600 dark:text-blue-400 mb-3 sm:mb-0 ">
         Book Finder
       </h1>
 
       {/* Search Bar */}
       <form
         onSubmit={handleSubmit}
-        className="flex items-center w-full sm:max-w-xl bg-gray-50 dark:bg-gray-800 rounded-full border border-gray-300 dark:border-gray-700 overflow-hidden shadow-sm"
+        className="flex items-center w-full sm:max-w-lg  bg-gray-50 dark:bg-gray-800 rounded-full border border-gray-300 dark:border-gray-700 overflow-hidden shadow-sm"
       >
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search books by title..."
-          className="flex-grow px-4 py-2 bg-transparent text-gray-800 dark:text-gray-100 focus:outline-none"
+          className="flex-grow px-4 lg:py-2 bg-transparent text-gray-800 dark:text-gray-100 focus:outline-none"
         />
         <button
           type="submit"
@@ -72,7 +72,7 @@ const NavBar = () => {
         to="/favorites"
         className="flex items-center gap-2 mt-3 sm:mt-0 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-semibold transition-all"
       >
-        <Heart className="w-5 h-5" />
+        <Heart className=" w-5 h-5 md:w-3 md:h-3 lg:w-5 lg:h-5" />
         <span>Favorites</span>
       </Link>
     </header>
