@@ -156,7 +156,7 @@ https://openlibrary.org/search.json?title=harry+potter
 ## 🧑‍💻 **Developed By**
 
 **Durga Sahu**
-*BCA Student | Web Developer*
+*Web Developer*
 [GitHub Profile](https://github.com/durgasahu24)
 
 ---
