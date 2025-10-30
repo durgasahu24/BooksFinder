@@ -1,174 +1,173 @@
-Perfect 🔥 — here’s a **professional, complete, and visually appealing `README.md`** file for your **Book Finder App** project:
+Perfect 🚀 That’s great progress, Durga!
+
+Here’s your **updated `README.md`** including your **Vercel live link** and all project details (clean, professional, and ready for submission 👇):
 
 ---
 
-```md
-# 📚 Book Finder App
+## 📚 Book Finder App
 
-A modern, responsive **Book Search Application** built using **React**, **Redux Toolkit**, and **Tailwind CSS**, powered by the **Open Library API**.  
-Search, explore, and favorite your favorite books — all in one place!
+### 🔗 **Live Demo**
 
----
-
-## 🚀 Features
-
-✅ **Search Books**
-- Find books by title using the [Open Library API](https://openlibrary.org/dev/docs/api/search).  
-- Displays key details such as author, cover, and publication year.
-
-✅ **Favorites System**
-- Add or remove books from your favorites list with a ❤️ click.
-- Favorites persist using **localStorage**, so they stay even after refreshing.
-
-✅ **Book Details Page**
-- View detailed information about each book, including author(s), subjects, and description.
-
-✅ **Recent Searches**
-- Automatically saves your last 3–5 search terms locally.
-- Quickly re-search books with a single click.
-
-✅ **Offline Detection**
-- Shows a smart toast or banner if the user goes offline.
-- Prevents fetching data while offline.
-
-✅ **Loading & Error Handling**
-- Smooth loader animation while fetching.
-- Graceful error boundary for handling unexpected UI crashes.
-
-✅ **Responsive Design**
-- Beautiful and mobile-friendly layout built with **Tailwind CSS**.
-- Works perfectly in both light and dark modes.
+👉 [Visit Book Finder App on Vercel](https://books-finder-two.vercel.app/)
 
 ---
 
-## 🛠️ Tech Stack
+### 👤 **User Persona: Alex**
 
-| Category | Technologies |
-|-----------|--------------|
-| **Frontend** | React (Vite), Redux Toolkit |
-| **Styling** | Tailwind CSS, Lucide React Icons |
-| **Notifications** | react-hot-toast |
-| **API** | Open Library Search API |
-| **State Management** | Redux + LocalStorage Persistence |
+* **Occupation:** College Student
+* **Need:** Alex wants to quickly search for books to read, explore details like authors, publication year, and subjects, and save favorites for later.
 
 ---
 
-## 📂 Folder Structure
+## 🧠 **Project Overview**
+
+The **Book Finder App** is a React-based web application that allows users to search for books using the **Open Library API**.
+It provides a clean, responsive, and user-friendly interface where users can:
+
+* Search for books by title.
+* View book details (author, cover, publish date, subjects, description).
+* Add or remove books from favorites.
+* View a personalized list of favorite books.
+* Get instant feedback using **toast notifications**.
+* See online/offline status notifications.
+
+---
+
+## ⚙️ **Tech Stack**
+
+| Category               | Technologies            |
+| ---------------------- | ----------------------- |
+| **Frontend Framework** | React (Vite)            |
+| **Styling**            | Tailwind CSS            |
+| **State Management**   | Redux Toolkit           |
+| **Notifications**      | react-hot-toast         |
+| **Routing**            | React Router DOM        |
+| **API**                | Open Library Search API |
+| **Deployment**         | Vercel                  |
+
+---
+
+## 📦 **Features**
+
+### 🔍 Book Search
+
+Search books by title using the Open Library API.
+
+### 💖 Favorites
+
+Add or remove books from your favorites list.
+Favorites are stored persistently using Redux state.
+
+### 🧾 Recent Searches
+
+Automatically saves your last 3–5 search terms in localStorage,
+allowing you to click and search them again easily.
+
+### 🌐 Network Status
+
+* Detects when the user goes **offline or comes back online**.
+* Shows appropriate toast messages (e.g., “🚫 You’re offline”).
+
+### ⚠️ Error Handling
+
+Includes a global **Error Boundary** to gracefully handle runtime errors.
+
+### 💫 Loader
+
+Displays a smooth loading spinner when data is being fetched.
+
+### 📱 Responsive UI
+
+Fully responsive layout optimized for both desktop and mobile users.
+
+---
+
+## 🗂️ **Project Structure**
 
 ```
-
-📦 BooksFinder
-┣ 📁 src
-┃ ┣ 📁 api
-┃ ┃ ┣ 📜 fetchBooks.js
-┃ ┃ ┣ 📜 useNetworkStatus.js
-┃ ┣ 📁 components
-┃ ┃ ┣ 📜 BookCard.jsx
-┃ ┃ ┣ 📜 BookDetails.jsx
-┃ ┃ ┣ 📜 Favorites.jsx
-┃ ┃ ┣ 📜 Loader.jsx
-┃ ┃ ┣ 📜 NavBar.jsx
-┃ ┣ 📁 hooks
-┃ ┃ ┗ 📜 useDarkMode.js
-┃ ┣ 📁 redux
-┃ ┃ ┣ 📜 bookSlice.js
-┃ ┃ ┣ 📜 favoriteSlice.js
-┃ ┣ 📁 pages
-┃ ┃ ┗ 📜 Home.jsx
-┃ ┣ 📜 App.jsx
-┃ ┣ 📜 main.jsx
-┣ 📜 package.json
-┣ 📜 tailwind.config.js
-┗ 📜 README.md
-
-````
+📁 src
+├── 📂 api
+│   ├── useBookapi.js
+│   └── useNetworkStatus.js
+├── 📂 components
+│   ├── BookCard.jsx
+│   ├── ErrorBoundary.jsx
+│   ├── Loader.jsx
+│   └── Navbar.jsx
+├── 📂 pages
+│   ├── Home.jsx
+│   ├── BookDetails.jsx
+│   └── Favorites.jsx
+├── 📂 redux
+│   ├── bookSlice.js
+│   └── favoriteSlice.js
+├── App.jsx
+├── main.jsx
+└── index.css
+```
 
 ---
 
-## ⚙️ Installation & Setup
+## 🚀 **Setup Instructions**
 
-### 1️⃣ Clone this repository
+### 1️⃣ Clone the Repository
+
 ```bash
 git clone https://github.com/durgasahu24/BooksFinder.git
 cd BooksFinder
-````
+```
 
-### 2️⃣ Install dependencies
+### 2️⃣ Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 3️⃣ Run the development server
+### 3️⃣ Start the Development Server
 
 ```bash
 npm run dev
 ```
 
-### 4️⃣ Open in your browser
-
-Visit 👉 **[http://localhost:5173](http://localhost:5173)**
-
----
-
-## 🔑 Environment Variables (Optional)
-
-If you later integrate APIs that require keys (like Google Books),
-you can create a `.env` file:
+### 4️⃣ Build for Production
 
 ```bash
-VITE_API_KEY=your_api_key_here
+npm run build
 ```
 
 ---
 
-## 🧠 Learnings
+## 🌍 **API Reference**
 
-* Implemented **Redux Toolkit** for predictable state management.
-* Used **React hooks** (`useEffect`, `useState`, `useSelector`, `useDispatch`).
-* Designed UI with **Tailwind CSS** and dark mode support.
-* Integrated **real-world API** (Open Library) for dynamic data.
-* Added **offline detection** and **persistent favorites** using localStorage.
+**Open Library Search API**
 
----
+```bash
+https://openlibrary.org/search.json?title={bookTitle}
+```
 
-## 📸 Screenshots
+Example:
 
-| Home Page                                                          | Book Details                                                           | Favorites                                                             |
-| ------------------------------------------------------------------ | ---------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| ![Home](https://via.placeholder.com/400x250?text=Book+Finder+Home) | ![Details](https://via.placeholder.com/400x250?text=Book+Details+Page) | ![Favorites](https://via.placeholder.com/400x250?text=Favorites+Page) |
-
-*(Replace placeholder images with your actual screenshots later)*
-
----
-
-## 🧩 Future Enhancements
-
-* [ ] Add pagination for large search results
-* [ ] Add user login & personalized favorites
-* [ ] Integrate Google Books API for more data
-* [ ] Implement dark mode toggle
-* [ ] Add “Recently Viewed” section
-
----
-
-## 👨‍💻 Author
-
-**👋 Durga Sahu**
-📧 [Your Email or LinkedIn]
-💻 [GitHub Profile](https://github.com/durgasahu24)
-
-If you like this project, ⭐ it on GitHub — it helps a lot!
-
----
-
-## 📝 License
-
-This project is licensed under the **MIT License** — feel free to use and modify it.
-
+```
+https://openlibrary.org/search.json?title=harry+potter
 ```
 
 ---
 
-Would you like me to include **screenshots** automatically using your current app (e.g., by describing what to capture and how to name them for the README)?
-```
+## 💡 **Additional Enhancements**
+
+* 🔄 Persistent favorites using localStorage (optional future improvement).
+* 🌙 Dark/Light Mode toggle.
+* 📖 Pagination for large search results.
+* 🧭 Search suggestions or auto-complete.
+
+---
+
+## 🧑‍💻 **Developed By**
+
+**Durga Sahu**
+*BCA Student | Web Developer*
+[GitHub Profile](https://github.com/durgasahu24)
+
+---
+
+Would you like me to add **screenshots and preview images** (like home page, search results, favorites page) to make it more impressive for submission?
